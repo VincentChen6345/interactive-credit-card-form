@@ -1,0 +1,35 @@
+.main-container {
+  background-color: aquamarine;
+  width: 100rem;
+  height: 70%;
+  display: flex;
+  font-size: 1.8rem;
+}
+
+.image-container {
+}
+
+.form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cardholder-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardholder-number {
+  display: flex;
+  flex-direction: column;
+}
+.date-cvc {
+  display: flex;
+}
+.MM-YY {
+  display: flex;
+}
+.confirm-btn {
+  width: 100%;
+}
