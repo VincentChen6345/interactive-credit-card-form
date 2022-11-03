@@ -6,8 +6,12 @@ const CardCTA = () => {
   return (
     <section className="main-container">
       <div className="image-container">
-        <img src={CardFront} alt="card background front" />
-        <img src={CardBack} alt="card background back" />
+        <img
+          src={CardFront}
+          alt="card background front"
+          className="card-front"
+        />
+        <img src={CardBack} alt="card background back" className="card-back" />
       </div>
       <form className="form-container">
         <div className="cardholder-name">
