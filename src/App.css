@@ -1,4 +1,4 @@
-@import url("https://fonts.google.com/specimen/Space+Grotesk");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
 
 /*Universal reset*/
 
@@ -8,8 +8,10 @@
   padding: 0;
 }
 html {
-  font-family: "Space Grotesk";
   font-size: 62.5%;
+}
+body {
+  font-family: "Space Grotesk", sans-serif;
 }
 :root {
   /*primary*/
@@ -17,7 +19,7 @@ html {
   --error-red: hsl(0, 100%, 66%);
 
   /*neutral*/
-  --white: hsl(0, 0, 100%);
+  --white: white;
   --Light-grayish-violet: hsl(270, 3%, 87%);
   --Dark-grayish-violet: hsl(279, 6%, 55%);
   --Very-dark-violet: hsl(278, 68%, 11%);

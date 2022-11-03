@@ -11,24 +11,42 @@ const CardCTA = () => {
       </div>
       <form className="form-container">
         <div className="cardholder-name">
-          <label htmlFor=""> CARDHOLDER NAME</label>
+          <label className="label" htmlFor="">
+            {" "}
+            CARDHOLDER NAME
+          </label>
           <input type="text" placeholder="e.g. Jane Appleseed" />
         </div>
         <div className="cardholder-number">
-          <label htmlFor=""> CARDHOLDER NUMBER</label>
+          <label className="label" htmlFor="">
+            {" "}
+            CARDHOLDER NUMBER
+          </label>
           <input type="text" placeholder="e.g. 1234 5678 9123 0000" />
         </div>
         <div className="date-cvc">
-          <span>
-            <label htmlFor="">EXP DATE (MM/YY)</label>
+          <span className="span__exp-date">
+            <label className="label exp" htmlFor="">
+              EXP DATE (MM/YY)
+            </label>
             <span className="MM-YY">
-              <input type="number" placeholder="MM" />
-              <input type="number" placeholder="YY" />
+              <input
+                type="text"
+                placeholder="MM"
+                className="exp-date MM-input"
+              />
+              <input
+                type="text"
+                placeholder="YY"
+                className="exp-date YY-input"
+              />
             </span>
           </span>
           <span>
-            <label htmlFor="">CVC</label>
-            <input type="number" placeholder="e.g. 123" />
+            <label className="label" htmlFor="">
+              CVC
+            </label>
+            <input type="text" placeholder="e.g. 123" />
           </span>
         </div>
 
