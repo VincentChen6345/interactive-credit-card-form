@@ -5,20 +5,6 @@
   font-size: 1.8rem;
 }
 
-.image-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 70rem;
-}
-.card-front {
-  width: 80%;
-}
-.card-back {
-  width: 80%;
-  margin-left: 7rem;
-}
 .form-container {
   height: 100%;
   display: flex;

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap");
 
 /*Universal reset*/
 
@@ -36,5 +36,5 @@ body {
 .background-image {
   position: absolute;
   left: 0;
-  z-index: -1;
+  z-index: -10;
 }

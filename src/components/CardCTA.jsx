@@ -1,18 +1,10 @@
 import React from "react";
-import CardFront from "../images/bg-card-front.png";
-import CardBack from "../images/bg-card-back.png";
+import CardDetails from "./CardDetails.jsx";
 import "./CardCTA.css";
 const CardCTA = () => {
   return (
     <section className="main-container">
-      <div className="image-container">
-        <img
-          src={CardFront}
-          alt="card background front"
-          className="card-front"
-        />
-        <img src={CardBack} alt="card background back" className="card-back" />
-      </div>
+      <CardDetails />
       <form className="form-container">
         <div className="cardholder-name">
           <label className="label" htmlFor="">
