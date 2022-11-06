@@ -27,7 +27,12 @@ const CardDetails = (props) => {
           </div>
         </div>
       </span>
-      <img src={CardBack} alt="card background back" className="card-back" />
+      <div style={{ position: "relative" }}>
+        <img src={CardBack} alt="card background back" className="card-back" />
+        <span className="CVC-number">
+          <p>000</p>
+        </span>
+      </div>
     </div>
   );
 };

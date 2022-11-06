@@ -37,7 +37,8 @@
   background-color: var(--Very-dark-violet);
   color: var(--white);
 }
-input {
+
+.input-style {
   margin-top: 1rem;
   margin-bottom: 2.5rem;
   line-height: 3.5rem;
@@ -47,9 +48,16 @@ input {
   font-family: "Space Grotesk", sans-serif;
   border: 1px solid var(--Light-grayish-violet);
   width: 100%;
+  color: var(--Very-dark-violet);
+  font-weight: 500;
 }
 input::placeholder {
   color: var(--Dark-grayish-violet);
+}
+
+input:focus {
+  border: solid 1px var(--Dark-grayish-violet);
+  outline: none;
 }
 .exp-date {
   width: 42%;
@@ -59,4 +67,14 @@ input::placeholder {
 }
 .YY-input {
   margin-left: 1rem;
+}
+
+.input-error {
+  border-color: red;
+}
+.error-message {
+  color: red;
+  font-size: 1.5rem;
+  margin-top: -2rem;
+  margin-bottom: 2rem;
 }

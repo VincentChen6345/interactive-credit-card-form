@@ -1,0 +1,4 @@
+6/11/22
+
+- figure out how to program two different error messages for full name input
+- once name input validation works, create a custom hook that applies to all the input fields
