@@ -1,6 +1,6 @@
 .main-container {
   width: 98rem;
-  height: 57%;
+  height: 46rem;
   display: flex;
   font-size: 1.8rem;
 }
@@ -37,7 +37,12 @@
   background-color: var(--Very-dark-violet);
   color: var(--white);
 }
-
+.confirm-btn:hover {
+  background-color: var(--Mid-dark-grayish-violet);
+}
+.confirm-btn:active {
+  background-color: var(--Very-dark-violet);
+}
 .input-style {
   margin-top: 1rem;
   margin-bottom: 2.5rem;
@@ -72,9 +77,15 @@ input:focus {
 .input-error {
   border-color: red;
 }
+.valid-input {
+  border-color: rgb(0, 229, 0);
+}
 .error-message {
   color: red;
   font-size: 1.5rem;
   margin-top: -2rem;
   margin-bottom: 2rem;
+}
+.hidden {
+  display: hidden;
 }

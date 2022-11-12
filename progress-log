@@ -2,3 +2,9 @@
 
 - figure out how to program two different error messages for full name input
 - once name input validation works, create a custom hook that applies to all the input fields
+
+12/11/22
+
+- figure out how to validate the credit card number as a 12 digit number when it contains a space every 4 numbers
+- ideally, figure out how to stop the cursor from moving after the 12 digits are entered
+- add validation to other input fields

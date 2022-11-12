@@ -22,7 +22,9 @@ body {
   --white: white;
   --Light-grayish-violet: hsl(270, 3%, 87%);
   --Dark-grayish-violet: hsl(279, 6%, 55%);
+  --Mid-dark-grayish-violet: hsl(278, 66%, 28%);
   --Very-dark-violet: hsl(278, 68%, 11%);
+  --Ultra-dark-violet: hsl(275, 68%, 5%);
 }
 
 .App {

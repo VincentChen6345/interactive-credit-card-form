@@ -1,47 +1,69 @@
 import React from "react";
 import CardDetails from "./CardDetails.jsx";
 import "./CardCTA.css";
-import { useState } from "react";
-const CardCTA = () => {
-  const [fullName, setFullName] = useState("");
-  const [fullNameIsValid, setFullNameIsValid] = useState("");
-  const [fullNameIsTouched, setFullNameIsTouched] = useState(false);
+import useInput from "../hooks/use-input";
 
-  const hasError = !fullNameIsValid && fullNameIsTouched;
+const CardCTA = () => {
+  /////////////////////////////////////////
+  //Extracting key variables for each input
+  const {
+    value: fullName,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameChangeHandler,
+    valueBlurHandler: nameBlurHandler,
+    isValid: nameIsValid,
+    isTouched: nameIsTouched,
+    valueReset: nameReset,
+  } = useInput((value) => value.trim() !== "" && value.trim().includes(" "));
+  const {
+    value: cardNumber,
+    hasError: cardNumberInputHasError,
+    isValid: cardNumberIsValid,
+    isTouched: cardNumberIsTouched,
+    valueChangeHandler: cardNumberChangeHandler,
+    valueBlurHandler: cardNumberBlurHandler,
+    valueReset: cardNumberReset,
+    keyUpHandler: cardNumberKeyUp,
+  } = useInput((value) => typeof value.trim() === "number");
+
   //
-  let fullNameErrorText = "Can't be empty";
-  const nameChangeHandler = (e) => {
-    setFullName(e.target.value);
-    console.log(fullName);
-  };
-  //
-  const validateFullName = (value) => {
-    if (value.trim() === "" || !value.trim().includes(" ")) {
-      fullNameErrorText =
-        value.trim() === "" ? "Can't be empty" : "Please enter full name";
-      setFullNameIsValid(false);
-    } else {
-      setFullNameIsValid(true);
-    }
-  };
+  let formIsValid = false;
+  if (nameIsValid) {
+    formIsValid = true;
+  }
+
   //
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    validateFullName(fullName);
-    console.log(fullName);
-
-    if (hasError) {
-      //set input styles to invalid, show error text
+    nameBlurHandler();
+    if (nameIsValid) {
+      nameReset();
     }
-    //otherwise, display completed logo,
   };
   //
-  const fullNameBlurHandler = () => {
-    setFullNameIsTouched(true);
-  };
+  //
+  let fullNameErrorText = "Can't be empty";
+  fullNameErrorText =
+    fullName.trim() === "" ? "Can't be empty" : "Please enter full name";
+  let cardNumberErrorText =
+    cardNumber.trim() === ""
+      ? "Can't be empty"
+      : "Wrong format, please enter 12 digit card number ";
+  let errorMessageStyle = nameIsValid ? "hidden" : "error-message";
   //Error styles
   let fullNameInputStyle = "input-style";
-  fullNameInputStyle = hasError ? "input-error input-style" : "input-style";
+  if (nameInputHasError) {
+    fullNameInputStyle = "input-error input-style";
+  } else if (!nameInputHasError && nameIsTouched) {
+    fullNameInputStyle = "valid-input input-style";
+  }
+  let cardNumberInputStyle = "input-style";
+  if (cardNumberInputHasError) {
+    cardNumberInputStyle = "input-error input-style";
+  } else if (!cardNumberInputHasError && cardNumberIsTouched) {
+    cardNumberInputStyle = "valid-input input-style";
+  }
+
   return (
     <section className="main-container">
       <CardDetails />
@@ -56,9 +78,12 @@ const CardCTA = () => {
             placeholder="e.g. Jane Appleseed"
             onChange={nameChangeHandler}
             className={fullNameInputStyle}
-            onBlur={fullNameBlurHandler}
+            onBlur={nameBlurHandler}
+            value={fullName}
           />
-          {hasError && <p className="error-message">{fullNameErrorText}</p>}
+          {nameInputHasError && (
+            <p className={errorMessageStyle}>{fullNameErrorText}</p>
+          )}
         </div>
         <div className="cardholder-number">
           <label className="label" htmlFor="">
@@ -68,8 +93,16 @@ const CardCTA = () => {
           <input
             type="text"
             placeholder="e.g. 1234 5678 9123 0000"
-            className="input-style"
+            className={cardNumberInputStyle}
+            onChange={cardNumberChangeHandler}
+            onBlur={cardNumberBlurHandler}
+            value={cardNumber}
+            onKeyUp={cardNumberKeyUp}
+            maxLength={19}
           />
+          {cardNumberInputHasError && (
+            <p className={errorMessageStyle}>{cardNumberErrorText}</p>
+          )}
         </div>
         <div className="date-cvc">
           <span className="span__exp-date">
