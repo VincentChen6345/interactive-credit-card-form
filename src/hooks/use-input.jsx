@@ -15,11 +15,11 @@ const useInput = (validateValue) => {
     setEnteredValueIsTouched(false);
   };
   const valueIsValid = validateValue(enteredValue);
+
   const hasError = !valueIsValid && enteredValueIsTouched;
 
   const keyUpHandler = () => {
     let cardArray = enteredValue.split("");
-    console.log(cardArray);
 
     if (
       cardArray.filter((value) => value !== " ").length % 4 === 0 &&
@@ -27,7 +27,15 @@ const useInput = (validateValue) => {
     ) {
       cardArray.push(" ");
       setEnteredValue(cardArray.join(""));
-      console.log(enteredValue);
+
+      console.log(
+        "removing all spaces",
+        +enteredValue.trim().split(" ").join(""),
+        "this is type ",
+        typeof +enteredValue.trim().split(" ").join(""),
+        "length",
+        enteredValue.trim().split(" ").join("").length
+      );
     }
   };
   return {

@@ -8,3 +8,8 @@
 - figure out how to validate the credit card number as a 12 digit number when it contains a space every 4 numbers
 - ideally, figure out how to stop the cursor from moving after the 12 digits are entered
 - add validation to other input fields
+
+14/11/22
+
+- completed the credit card validation for "empty" and "not a number" conditions
+- add validation for exp date and CVC

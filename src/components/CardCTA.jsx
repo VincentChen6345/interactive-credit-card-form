@@ -24,8 +24,23 @@ const CardCTA = () => {
     valueBlurHandler: cardNumberBlurHandler,
     valueReset: cardNumberReset,
     keyUpHandler: cardNumberKeyUp,
-  } = useInput((value) => typeof value.trim() === "number");
-
+  } = useInput(
+    (value) =>
+      !isNaN(+value.trim().split(" ").join("")) &&
+      value.trim().split(" ").join("").length === 16
+  );
+  const {
+    value: expMonth,
+    hasError: expMonthHasError,
+    isValid: expMonthIsValid,
+    isTouched: expMonthIsTouched,
+    valueChangeHandler: expMonthChangeHandler,
+    valueBlurHandler: expMonthBlurHandler,
+    valueReset: expMonthReset,
+  } = useInput(
+    (value) =>
+      value.trim().length === 2 && !isNaN(+value.trim().split(" ").join(""))
+  );
   //
   let formIsValid = false;
   if (nameIsValid) {
@@ -36,19 +51,22 @@ const CardCTA = () => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     nameBlurHandler();
-    if (nameIsValid) {
-      nameReset();
-    }
+    cardNumberBlurHandler();
+
+    if (nameIsValid) nameReset();
+    if (cardNumberIsValid) cardNumberReset();
   };
   //
-  //
+  //ERROR TEXTS//
   let fullNameErrorText = "Can't be empty";
   fullNameErrorText =
     fullName.trim() === "" ? "Can't be empty" : "Please enter full name";
   let cardNumberErrorText =
     cardNumber.trim() === ""
       ? "Can't be empty"
-      : "Wrong format, please enter 12 digit card number ";
+      : "Wrong format, please enter 16 digit card number ";
+
+  let expMonthErrorText = expMonth.trim() === "" ? "Can't be empty" : "Invalid";
   let errorMessageStyle = nameIsValid ? "hidden" : "error-message";
   //Error styles
   let fullNameInputStyle = "input-style";
@@ -63,6 +81,12 @@ const CardCTA = () => {
   } else if (!cardNumberInputHasError && cardNumberIsTouched) {
     cardNumberInputStyle = "valid-input input-style";
   }
+  // console.log(
+  //   "cardNumberInputHasError",
+  //   cardNumberInputHasError,
+  //   "cardNumberIsTouched",
+  //   cardNumberIsTouched
+  // );
 
   return (
     <section className="main-container">
@@ -114,13 +138,21 @@ const CardCTA = () => {
                 type="text"
                 placeholder="MM"
                 className="exp-date MM-input input-style"
+                maxLength={2}
+                onChange={expMonthChangeHandler}
+                onBlur={expMonthBlurHandler}
+                value={expMonth}
               />
+
               <input
                 type="text"
                 placeholder="YY"
                 className="exp-date YY-input input-style"
               />
-            </span>
+            </span>{" "}
+            {expMonthHasError && (
+              <p className={errorMessageStyle}>{expMonthErrorText}</p>
+            )}
           </span>
           <span>
             <label className="label" htmlFor="">
