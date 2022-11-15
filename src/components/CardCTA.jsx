@@ -4,6 +4,8 @@ import "./CardCTA.css";
 import useInput from "../hooks/use-input";
 
 const CardCTA = () => {
+  /////////
+
   /////////////////////////////////////////
   //Extracting key variables for each input
   const {
@@ -41,12 +43,35 @@ const CardCTA = () => {
     (value) =>
       value.trim().length === 2 && !isNaN(+value.trim().split(" ").join(""))
   );
+  const {
+    value: expYear,
+    hasError: expYearHasError,
+    isValid: expYearIsValid,
+    isTouched: expYearIsTouched,
+    valueChangeHandler: expYearChangeHandler,
+    valueBlurHandler: expYearBlurHandler,
+    valueReset: expYearReset,
+  } = useInput(
+    (value) =>
+      value.trim().length === 2 && !isNaN(+value.trim().split(" ").join(""))
+  );
+  const {
+    value: CVC,
+    hasError: CVCHasError,
+    isValid: CVCIsValid,
+    isTouched: CVCIsTouched,
+    valueChangeHandler: CVCChangeHandler,
+    valueBlurHandler: CVCBlurHandler,
+    valueReset: CVCReset,
+  } = useInput(
+    (value) =>
+      (value.trim().length === 3) & !isNaN(+value.trim().split(" ").join(""))
+  );
   //
   let formIsValid = false;
   if (nameIsValid) {
     formIsValid = true;
   }
-
   //
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -55,6 +80,7 @@ const CardCTA = () => {
 
     if (nameIsValid) nameReset();
     if (cardNumberIsValid) cardNumberReset();
+    if (expMonthIsValid) expMonthReset();
   };
   //
   //ERROR TEXTS//
@@ -66,7 +92,10 @@ const CardCTA = () => {
       ? "Can't be empty"
       : "Wrong format, please enter 16 digit card number ";
 
-  let expMonthErrorText = expMonth.trim() === "" ? "Can't be empty" : "Invalid";
+  let expMonthErrorText =
+    expMonth.trim() === "" || expYear.trim() === ""
+      ? "Can't be empty"
+      : "Invalid";
   let errorMessageStyle = nameIsValid ? "hidden" : "error-message";
   //Error styles
   let fullNameInputStyle = "input-style";
@@ -80,6 +109,18 @@ const CardCTA = () => {
     cardNumberInputStyle = "input-error input-style";
   } else if (!cardNumberInputHasError && cardNumberIsTouched) {
     cardNumberInputStyle = "valid-input input-style";
+  }
+  let expMonthInputStyle = "exp-date MM-input input-style";
+  if (expMonthHasError) {
+    expMonthInputStyle += " input-error";
+  } else if (!expMonthHasError && expMonthIsTouched) {
+    expMonthInputStyle += " valid-input";
+  }
+  let expYearInputStyle = "exp-date YY-input input-style";
+  if (expYearHasError) {
+    expYearInputStyle += " input-error";
+  } else if (!expYearHasError && expYearIsTouched) {
+    expYearInputStyle += " valid-input";
   }
   // console.log(
   //   "cardNumberInputHasError",
@@ -137,7 +178,7 @@ const CardCTA = () => {
               <input
                 type="text"
                 placeholder="MM"
-                className="exp-date MM-input input-style"
+                className={expMonthInputStyle}
                 maxLength={2}
                 onChange={expMonthChangeHandler}
                 onBlur={expMonthBlurHandler}
@@ -147,10 +188,14 @@ const CardCTA = () => {
               <input
                 type="text"
                 placeholder="YY"
-                className="exp-date YY-input input-style"
+                className={expYearInputStyle}
+                maxLength={2}
+                onChange={expYearChangeHandler}
+                onBlur={expYearBlurHandler}
+                value={expYear}
               />
             </span>{" "}
-            {expMonthHasError && (
+            {(expMonthHasError || expYearHasError) && (
               <p className={errorMessageStyle}>{expMonthErrorText}</p>
             )}
           </span>

@@ -13,3 +13,9 @@
 
 - completed the credit card validation for "empty" and "not a number" conditions
 - add validation for exp date and CVC
+
+15/11/22
+
+- add validation for CVC,
+- if form is valid, show completed image
+- store all data values in context to display on the card image
