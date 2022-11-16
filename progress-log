@@ -19,3 +19,8 @@
 - add validation for CVC,
 - if form is valid, show completed image
 - store all data values in context to display on the card image
+
+16/11/22
+
+- if form is valid, show completed image
+- store state values in context to be displayed on credit card image

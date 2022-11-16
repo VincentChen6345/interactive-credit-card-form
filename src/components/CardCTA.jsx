@@ -77,10 +77,15 @@ const CardCTA = () => {
     e.preventDefault();
     nameBlurHandler();
     cardNumberBlurHandler();
+    expMonthBlurHandler();
+    expYearBlurHandler();
+    CVCBlurHandler();
 
     if (nameIsValid) nameReset();
     if (cardNumberIsValid) cardNumberReset();
     if (expMonthIsValid) expMonthReset();
+    if (expYearIsValid) expYearReset();
+    if (CVCIsValid) CVCReset();
   };
   //
   //ERROR TEXTS//
@@ -96,6 +101,8 @@ const CardCTA = () => {
     expMonth.trim() === "" || expYear.trim() === ""
       ? "Can't be empty"
       : "Invalid";
+
+  let CVCErrorText = CVC.trim() === "" ? "Can't be empty" : "Invalid";
   let errorMessageStyle = nameIsValid ? "hidden" : "error-message";
   //Error styles
   let fullNameInputStyle = "input-style";
@@ -122,6 +129,13 @@ const CardCTA = () => {
   } else if (!expYearHasError && expYearIsTouched) {
     expYearInputStyle += " valid-input";
   }
+  let CVCInputStyle = "input-style";
+  if (CVCHasError) {
+    CVCInputStyle += " input-error";
+  } else if (!CVCHasError && CVCIsTouched) {
+    CVCInputStyle += " valid-input";
+  }
+
   // console.log(
   //   "cardNumberInputHasError",
   //   cardNumberInputHasError,
@@ -203,7 +217,16 @@ const CardCTA = () => {
             <label className="label" htmlFor="">
               CVC
             </label>
-            <input type="text" placeholder="e.g. 123" className="input-style" />
+            <input
+              type="text"
+              placeholder="e.g. 123"
+              className={CVCInputStyle}
+              maxLength={3}
+              onChange={CVCChangeHandler}
+              onBlur={CVCBlurHandler}
+              value={CVC}
+            />
+            {CVCHasError && <p className={errorMessageStyle}>{CVCErrorText}</p>}
           </span>
         </div>
 
