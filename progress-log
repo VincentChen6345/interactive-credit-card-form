@@ -24,3 +24,7 @@
 
 - if form is valid, show completed image
 - store state values in context to be displayed on credit card image
+
+17/11/22
+
+- store state values in context to be displayed on credit card image

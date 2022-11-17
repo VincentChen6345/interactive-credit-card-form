@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import CardDetails from "./CardDetails.jsx";
 import "./CardCTA.css";
 import useInput from "../hooks/use-input";
+import { ReactComponent as CompletedIcon } from "../images/icon-complete.svg";
 
 const CardCTA = () => {
+  const [formIsValid, setFormIsValid] = useState("");
   /////////
-
+  const continueFN = () => {
+    setFormIsValid("");
+  };
   /////////////////////////////////////////
   //Extracting key variables for each input
   const {
@@ -68,10 +72,7 @@ const CardCTA = () => {
       (value.trim().length === 3) & !isNaN(+value.trim().split(" ").join(""))
   );
   //
-  let formIsValid = false;
-  if (nameIsValid) {
-    formIsValid = true;
-  }
+
   //
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -80,12 +81,22 @@ const CardCTA = () => {
     expMonthBlurHandler();
     expYearBlurHandler();
     CVCBlurHandler();
-
+    if (
+      nameIsValid &&
+      cardNumberIsValid &&
+      expMonthIsValid &&
+      expYearIsValid &&
+      CVCIsValid
+    ) {
+      setFormIsValid(true);
+    }
     if (nameIsValid) nameReset();
     if (cardNumberIsValid) cardNumberReset();
     if (expMonthIsValid) expMonthReset();
     if (expYearIsValid) expYearReset();
     if (CVCIsValid) CVCReset();
+
+    //store all state variables in an object and store that object in the context
   };
   //
   //ERROR TEXTS//
@@ -135,105 +146,110 @@ const CardCTA = () => {
   } else if (!CVCHasError && CVCIsTouched) {
     CVCInputStyle += " valid-input";
   }
+  let content = !formIsValid ? (
+    <form className="form-container" onSubmit={formSubmitHandler}>
+      <div className="cardholder-name">
+        <label className="label" htmlFor="">
+          {" "}
+          CARDHOLDER NAME
+        </label>
+        <input
+          type="text"
+          placeholder="e.g. Jane Appleseed"
+          onChange={nameChangeHandler}
+          className={fullNameInputStyle}
+          onBlur={nameBlurHandler}
+          value={fullName}
+        />
+        {nameInputHasError && (
+          <p className={errorMessageStyle}>{fullNameErrorText}</p>
+        )}
+      </div>
+      <div className="cardholder-number">
+        <label className="label" htmlFor="">
+          {" "}
+          CARDHOLDER NUMBER
+        </label>
+        <input
+          type="text"
+          placeholder="e.g. 1234 5678 9123 0000"
+          className={cardNumberInputStyle}
+          onChange={cardNumberChangeHandler}
+          onBlur={cardNumberBlurHandler}
+          value={cardNumber}
+          onKeyUp={cardNumberKeyUp}
+          maxLength={19}
+        />
+        {cardNumberInputHasError && (
+          <p className={errorMessageStyle}>{cardNumberErrorText}</p>
+        )}
+      </div>
+      <div className="date-cvc">
+        <span className="span__exp-date">
+          <label className="label exp" htmlFor="">
+            EXP DATE (MM/YY)
+          </label>
+          <span className="MM-YY">
+            <input
+              type="text"
+              placeholder="MM"
+              className={expMonthInputStyle}
+              maxLength={2}
+              onChange={expMonthChangeHandler}
+              onBlur={expMonthBlurHandler}
+              value={expMonth}
+            />
 
-  // console.log(
-  //   "cardNumberInputHasError",
-  //   cardNumberInputHasError,
-  //   "cardNumberIsTouched",
-  //   cardNumberIsTouched
-  // );
+            <input
+              type="text"
+              placeholder="YY"
+              className={expYearInputStyle}
+              maxLength={2}
+              onChange={expYearChangeHandler}
+              onBlur={expYearBlurHandler}
+              value={expYear}
+            />
+          </span>{" "}
+          {(expMonthHasError || expYearHasError) && (
+            <p className={errorMessageStyle}>{expMonthErrorText}</p>
+          )}
+        </span>
+        <span>
+          <label className="label" htmlFor="">
+            CVC
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. 123"
+            className={CVCInputStyle}
+            maxLength={3}
+            onChange={CVCChangeHandler}
+            onBlur={CVCBlurHandler}
+            value={CVC}
+          />
+          {CVCHasError && <p className={errorMessageStyle}>{CVCErrorText}</p>}
+        </span>
+      </div>
 
+      <button type="submit" className="btn">
+        Confirm
+      </button>
+    </form>
+  ) : (
+    <div className="completed-container">
+      <CompletedIcon className="completed-icon" />
+      <p className="primary-text">THANK YOU!</p>
+      <p className="secondary-text">We've added your card details</p>
+
+      <button className="continue btn" onClick={continueFN}>
+        Continue
+      </button>
+    </div>
+  );
   return (
     <section className="main-container">
       <CardDetails />
-      <form className="form-container" onSubmit={formSubmitHandler}>
-        <div className="cardholder-name">
-          <label className="label" htmlFor="">
-            {" "}
-            CARDHOLDER NAME
-          </label>
-          <input
-            type="text"
-            placeholder="e.g. Jane Appleseed"
-            onChange={nameChangeHandler}
-            className={fullNameInputStyle}
-            onBlur={nameBlurHandler}
-            value={fullName}
-          />
-          {nameInputHasError && (
-            <p className={errorMessageStyle}>{fullNameErrorText}</p>
-          )}
-        </div>
-        <div className="cardholder-number">
-          <label className="label" htmlFor="">
-            {" "}
-            CARDHOLDER NUMBER
-          </label>
-          <input
-            type="text"
-            placeholder="e.g. 1234 5678 9123 0000"
-            className={cardNumberInputStyle}
-            onChange={cardNumberChangeHandler}
-            onBlur={cardNumberBlurHandler}
-            value={cardNumber}
-            onKeyUp={cardNumberKeyUp}
-            maxLength={19}
-          />
-          {cardNumberInputHasError && (
-            <p className={errorMessageStyle}>{cardNumberErrorText}</p>
-          )}
-        </div>
-        <div className="date-cvc">
-          <span className="span__exp-date">
-            <label className="label exp" htmlFor="">
-              EXP DATE (MM/YY)
-            </label>
-            <span className="MM-YY">
-              <input
-                type="text"
-                placeholder="MM"
-                className={expMonthInputStyle}
-                maxLength={2}
-                onChange={expMonthChangeHandler}
-                onBlur={expMonthBlurHandler}
-                value={expMonth}
-              />
-
-              <input
-                type="text"
-                placeholder="YY"
-                className={expYearInputStyle}
-                maxLength={2}
-                onChange={expYearChangeHandler}
-                onBlur={expYearBlurHandler}
-                value={expYear}
-              />
-            </span>{" "}
-            {(expMonthHasError || expYearHasError) && (
-              <p className={errorMessageStyle}>{expMonthErrorText}</p>
-            )}
-          </span>
-          <span>
-            <label className="label" htmlFor="">
-              CVC
-            </label>
-            <input
-              type="text"
-              placeholder="e.g. 123"
-              className={CVCInputStyle}
-              maxLength={3}
-              onChange={CVCChangeHandler}
-              onBlur={CVCBlurHandler}
-              value={CVC}
-            />
-            {CVCHasError && <p className={errorMessageStyle}>{CVCErrorText}</p>}
-          </span>
-        </div>
-
-        <button type="submit" className="confirm-btn">
-          Confirm
-        </button>
-      </form>
+      {content}
     </section>
   );
 };
