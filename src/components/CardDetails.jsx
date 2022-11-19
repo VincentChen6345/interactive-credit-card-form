@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardFront from "../images/bg-card-front.png";
 import CardBack from "../images/bg-card-back.png";
 import "./CardDetails.css";
-import InputValuesContext from "../context/InputValuesContext";
+
 const CardDetails = (props) => {
-  const contextValues = useContext(InputValuesContext);
-  console.log(contextValues);
+  let currentVariables = props.stateVariables;
 
   return (
     <div className="image-container">
@@ -23,18 +22,20 @@ const CardDetails = (props) => {
             </span>
           </div>
           <div className="card-number">
-            <p>0000 0000 0000 0000</p>
+            <p>{currentVariables.cardNumber}</p>
           </div>
           <div className="details-lower">
-            <span className="full-name">{contextValues.fullName}</span>
-            <span className="card-expiry-date">00/00</span>
+            <span className="full-name">{currentVariables.fullName}</span>
+            <span className="card-expiry-date">
+              {currentVariables.expMonth}/{currentVariables.expYear}
+            </span>
           </div>
         </div>
       </span>
       <div style={{ position: "relative" }}>
         <img src={CardBack} alt="card background back" className="card-back" />
         <span className="CVC-number">
-          <p>000</p>
+          <p>{currentVariables.CVC}</p>
         </span>
       </div>
     </div>

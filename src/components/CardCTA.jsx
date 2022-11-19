@@ -5,10 +5,19 @@ import useInput from "../hooks/use-input";
 import { ReactComponent as CompletedIcon } from "../images/icon-complete.svg";
 
 const CardCTA = () => {
+  const initialCardDetails = {
+    fullName: "JANE APPLESEED",
+    cardNumber: "0000 0000 0000 0000",
+    expMonth: "00",
+    expYear: "00",
+    CVC: "123",
+  };
   const [formIsValid, setFormIsValid] = useState("");
+  const [stateVariables, setStateVariables] = useState(initialCardDetails);
   /////////
   const continueFN = () => {
     setFormIsValid("");
+    setStateVariables(initialCardDetails);
   };
   /////////////////////////////////////////
   //Extracting key variables for each input
@@ -90,7 +99,7 @@ const CardCTA = () => {
     ) {
       setFormIsValid(true);
 
-      // currentInputValues = { fullName, cardNumber, expMonth, expYear, CVC };
+      setStateVariables({ fullName, cardNumber, expMonth, expYear, CVC });
     }
     if (nameIsValid) nameReset();
     if (cardNumberIsValid) cardNumberReset();
@@ -250,7 +259,7 @@ const CardCTA = () => {
   );
   return (
     <section className="main-container">
-      <CardDetails />
+      <CardDetails stateVariables={stateVariables} />
       {content}
     </section>
   );
