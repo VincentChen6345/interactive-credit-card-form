@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import CardDetails from "./CardDetails.jsx";
 import "./CardCTA.css";
 import useInput from "../hooks/use-input";
@@ -89,6 +89,8 @@ const CardCTA = () => {
       CVCIsValid
     ) {
       setFormIsValid(true);
+
+      // currentInputValues = { fullName, cardNumber, expMonth, expYear, CVC };
     }
     if (nameIsValid) nameReset();
     if (cardNumberIsValid) cardNumberReset();

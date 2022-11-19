@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import CardFront from "../images/bg-card-front.png";
 import CardBack from "../images/bg-card-back.png";
 import "./CardDetails.css";
+import InputValuesContext from "../context/InputValuesContext";
 const CardDetails = (props) => {
+  const contextValues = useContext(InputValuesContext);
+  console.log(contextValues);
+
   return (
     <div className="image-container">
       <span className="card-front-container">
@@ -22,7 +26,7 @@ const CardDetails = (props) => {
             <p>0000 0000 0000 0000</p>
           </div>
           <div className="details-lower">
-            <span className="full-name">Jane Appleseed</span>
+            <span className="full-name">{contextValues.fullName}</span>
             <span className="card-expiry-date">00/00</span>
           </div>
         </div>

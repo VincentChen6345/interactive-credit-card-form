@@ -28,3 +28,8 @@
 17/11/22
 
 - store state values in context to be displayed on credit card image
+  --create a context function that adds the state values from cardCTA.jsx into an object thus storing it in the context, then create another context function that distributes it
+
+19/11/22
+
+- watch rest of context tutorial, make the context dynamic
