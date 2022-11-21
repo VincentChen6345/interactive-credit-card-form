@@ -7,15 +7,18 @@
 }
 .card-front-container {
   height: 100%;
+  position: relative;
 }
 .card-front {
-  width: 80%;
+  width: 384.95px;
   z-index: -1;
 }
+
 .card-back {
-  width: 80%;
+  width: 384.95px;
   margin-left: 7rem;
 }
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -41,14 +44,14 @@
 .card-number {
   position: absolute;
   left: 2.3rem;
-  bottom: 6rem;
+  bottom: 9rem;
   font-size: 2.9rem;
   color: white;
   font-weight: 400;
 }
 .details-lower {
   position: absolute;
-  bottom: 2.3rem;
+  bottom: 5.3rem;
   left: 2.3rem;
   color: white;
   display: flex;
@@ -68,4 +71,21 @@
   font-size: 1.5rem;
   letter-spacing: 2px;
   font-weight: bold;
+}
+@media (max-width: 1043px) {
+  .card-back {
+    margin-left: 0;
+  }
+  .image-container {
+    width: 60rem;
+  }
+  .details-lower {
+    padding-right: 0;
+    width: 34rem;
+  }
+}
+@media (max-width: 934px) {
+  .CVC-number {
+    margin-right: -2rem;
+  }
 }

@@ -120,3 +120,18 @@ input:focus {
 .continue.btn {
   width: 80%;
 }
+@media (max-width: 1043px) {
+  .form-container {
+    margin-left: 0;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  .main-container {
+    width: 90rem;
+  }
+}
+@media (max-width: 934px) {
+  .main-container {
+    width: 80rem;
+  }
+}

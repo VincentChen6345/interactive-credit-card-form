@@ -25,6 +25,9 @@ body {
   --Mid-dark-grayish-violet: hsl(278, 66%, 28%);
   --Very-dark-violet: hsl(278, 68%, 11%);
   --Ultra-dark-violet: hsl(275, 68%, 5%);
+
+  /*Breakpoints*/
+  --big: 1008px;
 }
 
 .App {
@@ -39,4 +42,6 @@ body {
   position: absolute;
   left: 0;
   z-index: -10;
+  width: 35vw;
+  height: 100vh;
 }
