@@ -32,7 +32,7 @@ const CardDetails = (props) => {
         </div>
         {/* </div> */}
       </span>
-      <div style={{ position: "relative" }}>
+      <div className="card-back-container">
         <img src={CardBack} alt="card background back" className="card-back" />
         <span className="CVC-number">
           <p>{currentVariables.CVC}</p>

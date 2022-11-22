@@ -89,3 +89,20 @@
     margin-right: -2rem;
   }
 }
+
+@media (max-width: 872px) {
+  .card-back-container {
+    position: inherit;
+  }
+  .image-container {
+    width: 100%;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  .card-back-container {
+    position: absolute;
+    z-index: -5;
+    right: 3rem;
+    top: -12rem;
+  }
+}

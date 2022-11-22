@@ -130,8 +130,15 @@ input:focus {
     width: 90rem;
   }
 }
-@media (max-width: 934px) {
+/* @media (max-width: 934px) {
   .main-container {
-    width: 80rem;
+    width: 50rem;
+  }
+} */
+@media (max-width: 872px) {
+  .main-container {
+    flex-direction: column;
+    padding-top: 2rem;
+    width: 50rem;
   }
 }

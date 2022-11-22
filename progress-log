@@ -37,3 +37,8 @@
 21/11/22
 
 - finish off media queries
+
+22/11/22
+
+- switch image from desktop to mobile based off screen width
+- fix card front details absolute positioning in mobile width
