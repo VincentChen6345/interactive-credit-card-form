@@ -85,9 +85,6 @@
   }
 }
 @media (max-width: 934px) {
-  .CVC-number {
-    margin-right: -2rem;
-  }
 }
 
 @media (max-width: 872px) {
@@ -104,5 +101,56 @@
     z-index: -5;
     right: 3rem;
     top: -12rem;
+  }
+  .card-number {
+    bottom: 7rem;
+  }
+  .details-lower {
+    bottom: 3.3rem;
+  }
+  .CVC-number {
+    margin-right: -2rem;
+  }
+}
+@media (max-width: 575px) {
+  .card-front {
+    width: 290px;
+  }
+  .card-back {
+    width: 290px;
+  }
+  .card-back-container {
+    top: -9rem;
+    right: 0;
+  }
+  .card-number {
+    font-size: 2rem;
+    bottom: 5.5rem;
+  }
+  .full-name {
+    font-size: 1.3rem;
+  }
+  .card-expiry-date {
+    font-size: 1.3rem;
+  }
+  .details-lower {
+    width: 25rem;
+    bottom: 2.5rem;
+  }
+  .big-circle {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .hollow-circle {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .CVC-number {
+    font-size: 1.3rem;
+    bottom: 7.8rem;
+    margin-right: -3.5rem;
+  }
+  .logo-container {
+    width: 6rem;
   }
 }

@@ -1,11 +1,21 @@
 import "./App.css";
 import React from "react";
 import CardCTA from "./components/CardCTA.jsx";
-import backgroundImage from "./images/bg-main-desktop.png";
+import backgroundImageDesktop from "./images/bg-main-desktop.png";
+import backgroundImageMobile from "./images/bg-main-mobile.png";
 function App() {
   return (
     <div className="App">
-      <img src={backgroundImage} alt="" className="background-image" />
+      <img
+        src={backgroundImageDesktop}
+        alt=""
+        className="background-image-desktop"
+      />
+      <img
+        src={backgroundImageMobile}
+        alt=""
+        className="background-image-mobile"
+      />
       <CardCTA />
     </div>
   );

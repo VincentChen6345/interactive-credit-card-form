@@ -42,3 +42,8 @@
 
 - switch image from desktop to mobile based off screen width
 - fix card front details absolute positioning in mobile width
+
+23/11/22
+
+- finished main responsive layout
+- there are a few small tweaks that can be made but I don't think it's worth the time right now

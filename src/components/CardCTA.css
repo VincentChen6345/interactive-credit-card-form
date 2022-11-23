@@ -120,6 +120,9 @@ input:focus {
 .continue.btn {
   width: 80%;
 }
+.span__CVC {
+  width: 50%;
+}
 @media (max-width: 1043px) {
   .form-container {
     margin-left: 0;
@@ -140,5 +143,17 @@ input:focus {
     flex-direction: column;
     padding-top: 2rem;
     width: 50rem;
+  }
+  .completed-container {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 575px) {
+  .main-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
   }
 }

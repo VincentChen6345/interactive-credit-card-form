@@ -225,7 +225,7 @@ const CardCTA = () => {
             <p className={errorMessageStyle}>{expMonthErrorText}</p>
           )}
         </span>
-        <span>
+        <span className="span__CVC">
           <label className="label" htmlFor="">
             CVC
           </label>

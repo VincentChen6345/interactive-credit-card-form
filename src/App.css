@@ -38,10 +38,27 @@ body {
   align-items: center;
 }
 
-.background-image {
+.background-image-desktop {
   position: absolute;
   left: 0;
   z-index: -10;
   width: 35vw;
   height: 100vh;
+}
+.background-image-mobile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -10;
+  width: 100vw;
+  height: 40vh;
+  display: none;
+}
+@media (max-width: 872px) {
+  .background-image-desktop {
+    display: none;
+  }
+  .background-image-mobile {
+    display: block;
+  }
 }

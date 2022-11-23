@@ -9,7 +9,6 @@ const CardDetails = (props) => {
   return (
     <div className="image-container">
       <span className="card-front-container">
-        {/* <div style={{ position: "relative" }}> */}
         <img
           src={CardFront}
           alt="card background front"
@@ -30,7 +29,6 @@ const CardDetails = (props) => {
             {currentVariables.expMonth}/{currentVariables.expYear}
           </span>
         </div>
-        {/* </div> */}
       </span>
       <div className="card-back-container">
         <img src={CardBack} alt="card background back" className="card-back" />
