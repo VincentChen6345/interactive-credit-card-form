@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import CardDetails from "./CardDetails.jsx";
 import "./CardCTA.css";
 import useInput from "../hooks/use-input";
