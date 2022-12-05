@@ -47,3 +47,7 @@
 
 - finished main responsive layout
 - there are a few small tweaks that can be made but I don't think it's worth the time right now
+
+5/12/22
+
+- fixed the error message styling bug under each input field

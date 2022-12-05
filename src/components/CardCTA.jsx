@@ -5,6 +5,7 @@ import useInput from "../hooks/use-input";
 import { ReactComponent as CompletedIcon } from "../images/icon-complete.svg";
 
 const CardCTA = () => {
+  //define default card details to be displayed in card image
   const initialCardDetails = {
     fullName: "JANE APPLESEED",
     cardNumber: "0000 0000 0000 0000",
@@ -12,9 +13,11 @@ const CardCTA = () => {
     expYear: "00",
     CVC: "123",
   };
-  const [formIsValid, setFormIsValid] = useState("");
   const [stateVariables, setStateVariables] = useState(initialCardDetails);
-  /////////
+  //set initial form validity to undefined
+  const [formIsValid, setFormIsValid] = useState("");
+  ///////////////////////
+  //functionality for clicking the continue button
   const continueFN = () => {
     setFormIsValid("");
     setStateVariables(initialCardDetails);
@@ -30,6 +33,7 @@ const CardCTA = () => {
     isTouched: nameIsTouched,
     valueReset: nameReset,
   } = useInput((value) => value.trim() !== "" && value.trim().includes(" "));
+  //enter a function into the custom hook that checks if the input is valid or not
   const {
     value: cardNumber,
     hasError: cardNumberInputHasError,
@@ -98,7 +102,7 @@ const CardCTA = () => {
       CVCIsValid
     ) {
       setFormIsValid(true);
-
+      //if all input fields are valid, set new state variables to be the current input values
       setStateVariables({ fullName, cardNumber, expMonth, expYear, CVC });
     }
     if (nameIsValid) nameReset();
@@ -106,11 +110,10 @@ const CardCTA = () => {
     if (expMonthIsValid) expMonthReset();
     if (expYearIsValid) expYearReset();
     if (CVCIsValid) CVCReset();
-
-    //store all state variables in an object and store that object in the context
   };
-  //
-  //ERROR TEXTS//
+
+  ///////////////
+  //ERROR TEXTS//(I might consider moving all these to another jsx file and importing them to keep it clean)
   let fullNameErrorText = "Can't be empty";
   fullNameErrorText =
     fullName.trim() === "" ? "Can't be empty" : "Please enter full name";
@@ -125,19 +128,23 @@ const CardCTA = () => {
       : "Invalid";
 
   let CVCErrorText = CVC.trim() === "" ? "Can't be empty" : "Invalid";
-  let errorMessageStyle = nameIsValid ? "hidden" : "error-message";
-  //Error styles
+  const errorMsgStyle = (variableIsValid) => {
+    return variableIsValid ? "hidden" : "error-message";
+  };
+  //////////////
+  //////////////
+  //Error styles for each input field
   let fullNameInputStyle = "input-style";
   if (nameInputHasError) {
-    fullNameInputStyle = "input-error input-style";
+    fullNameInputStyle += " input-error";
   } else if (!nameInputHasError && nameIsTouched) {
-    fullNameInputStyle = "valid-input input-style";
+    fullNameInputStyle += " valid-input";
   }
   let cardNumberInputStyle = "input-style";
   if (cardNumberInputHasError) {
-    cardNumberInputStyle = "input-error input-style";
+    cardNumberInputStyle += " input-error";
   } else if (!cardNumberInputHasError && cardNumberIsTouched) {
-    cardNumberInputStyle = "valid-input input-style";
+    cardNumberInputStyle += " valid-input";
   }
   let expMonthInputStyle = "exp-date MM-input input-style";
   if (expMonthHasError) {
@@ -173,7 +180,7 @@ const CardCTA = () => {
           value={fullName}
         />
         {nameInputHasError && (
-          <p className={errorMessageStyle}>{fullNameErrorText}</p>
+          <p className={errorMsgStyle(nameIsValid)}>{fullNameErrorText}</p>
         )}
       </div>
       <div className="cardholder-number">
@@ -192,7 +199,9 @@ const CardCTA = () => {
           maxLength={19}
         />
         {cardNumberInputHasError && (
-          <p className={errorMessageStyle}>{cardNumberErrorText}</p>
+          <p className={errorMsgStyle(cardNumberIsValid)}>
+            {cardNumberErrorText}
+          </p>
         )}
       </div>
       <div className="date-cvc">
@@ -222,7 +231,9 @@ const CardCTA = () => {
             />
           </span>{" "}
           {(expMonthHasError || expYearHasError) && (
-            <p className={errorMessageStyle}>{expMonthErrorText}</p>
+            <p className={errorMsgStyle(expMonthIsValid && expYearIsValid)}>
+              {expMonthErrorText}
+            </p>
           )}
         </span>
         <span className="span__CVC">
@@ -238,7 +249,9 @@ const CardCTA = () => {
             onBlur={CVCBlurHandler}
             value={CVC}
           />
-          {CVCHasError && <p className={errorMessageStyle}>{CVCErrorText}</p>}
+          {CVCHasError && (
+            <p className={errorMsgStyle(CVCIsValid)}>{CVCErrorText}</p>
+          )}
         </span>
       </div>
 

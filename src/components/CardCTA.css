@@ -56,6 +56,9 @@
   color: var(--Very-dark-violet);
   font-weight: 500;
 }
+.input-error {
+  border-color: red;
+}
 input::placeholder {
   color: var(--Dark-grayish-violet);
 }
@@ -74,9 +77,6 @@ input:focus {
   margin-left: 1rem;
 }
 
-.input-error {
-  border-color: red;
-}
 .valid-input {
   border-color: rgb(0, 229, 0);
 }
